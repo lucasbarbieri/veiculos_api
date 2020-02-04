@@ -15,24 +15,24 @@ class VeiculosController extends Controller
             $Veiculos = Veiculos::get();
         }
 
-
-        return $Veiculos;
+        return response($Veiculos,200);
     }
 
     public function create(Request $request){
         $Veiculos = Veiculos::create($request->all());
-        return $Veiculos;
+        return response($Veiculos,200);
     }
 
     public function update($id, Request $request){
         $Veiculos = Veiculos::find($id);
         $Veiculos->fill($request->all());
         $Veiculos->save();
-        return $Veiculos;
+        return response($Veiculos,200);
 
     }
 
-    public function delete(Request $request){
-
+    public function delete($id, Request $request){
+        $Veiculos = Veiculos::where('id',$id)->delete();
+        return response($Veiculos, 200);
     }
 }
